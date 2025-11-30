@@ -24,7 +24,8 @@ const handleSubmit = async(e) =>{
               'Content-Type': 'application/json'
             },
             body: JSON.stringify(user)
-      })  
+      }) 
+     
       if(response.ok){ 
         const resData = await response.json()
         storetoken(resData.token)   
@@ -32,7 +33,8 @@ const handleSubmit = async(e) =>{
         alert('login successfull')
         navigate('/')
       }else{
-        alert('login failed. Please try again.')
+        const resData =  await response.json()
+        alert(resData.message)
       }
       }catch(err){
         console.error('Error during login:', err)
@@ -47,6 +49,7 @@ const handleSubmit = async(e) =>{
             id={"email"}
             name="email"
             value={user.email}
+            type={"email"}
             onChange={handleChange}
           />
          <Input
@@ -54,6 +57,7 @@ const handleSubmit = async(e) =>{
             id={"password"}
             name="password"
             value={user.password}
+            type={"password"}
             onChange={handleChange}
           />
           <button type="submit" className="btn">Login</button>

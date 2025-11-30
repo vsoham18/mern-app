@@ -35,12 +35,12 @@ const Register = () => {
         alert('Registration successful! Please login.')
         navigate('/login')
       }else{
-        alert('Registration failed. Please try again.')
+        const resData = await response.json()
+        alert(resData.extraDetails)
       }
       }catch(err){
         console.error('Error during registration:', err)
-      }
-       
+      }    
   }
   return (
     <div>
@@ -72,6 +72,7 @@ const Register = () => {
             id={"password"}
             name="password"
             value={form.password}
+            type={"password"}
             onChange={handleChange}
           />
           <button type="submit">Register Now</button>

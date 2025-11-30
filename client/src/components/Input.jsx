@@ -1,4 +1,4 @@
-const Input = ({label,id,name,value,onChange}) =>{
+const Input = ({label,id,name,value,onChange,type}) =>{
     return (
         <div className="input-container">
     <label htmlFor="title">{label}</label>
@@ -7,6 +7,7 @@ const Input = ({label,id,name,value,onChange}) =>{
      name={name} 
      value={value} 
      onChange={onChange} 
+      type={type || "text"}
     />
     {/* <p className='error'>{error}</p> */}
   </div>
