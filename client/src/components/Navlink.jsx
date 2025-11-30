@@ -5,7 +5,7 @@ const Navlink = ({page}) => {
       <NavLink 
         to={`${page === "/" ? "/" : `/${page}`}`}
         className={({ isActive }) => (isActive ? "active" : "")}>
-       {page === "/" ? "Home" : page}
+       {page === "/" ? "Home" : page.charAt(0).toUpperCase() + page.slice(1)}
       </NavLink>
 
   );

@@ -1,21 +1,46 @@
 import { useState } from "react"
+import { useNavigate } from "react-router-dom"
 import Input from "../components/Input.jsx"
+import { useAuth } from "../context/auth.jsx"
+
 const Register = () => {
   const [form, setForm] = useState({
-    username: '',
+    userName: '',
     email: '',
     phone: '',
     password: ''
   })
+  const navigate = useNavigate()
+
+  const { storetoken } = useAuth()
+
   const handleChange = (e)=>{
        const { name, value } = e.target
        setForm(prev => ({ ...prev, [name]: value }))
   }
-  const handleSubmit = (e) =>{
-      e.preventDefault()
-      console.log(form);
-      setForm({ username: '', email: '', phone: '', password: '' })
-
+  const handleSubmit = async(e) =>{
+    e.preventDefault()
+      try{
+         const response = await fetch('http://localhost:5000/api/auth/register',{
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(form)
+      })  
+      if(response.ok){ 
+        const resData = await response.json()
+         storetoken(resData.token) 
+        setForm({ userName: '', email: '', phone: '', password: '' })
+        alert('Registration successful! Please login.')
+        navigate('/login')
+      }else{
+        alert('Registration failed. Please try again.')
+      }
+      }catch(err){
+        console.error('Error during registration:', err)
+      }
+       
   }
   return (
     <div>
@@ -24,8 +49,8 @@ const Register = () => {
           <Input
             label={"Username"}
             id={"username"}
-            name="username"
-            value={form.username}
+            name="userName"
+            value={form.userName}
             onChange={handleChange}
           />
           <Input

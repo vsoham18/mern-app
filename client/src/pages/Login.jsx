@@ -1,10 +1,12 @@
 import { useState } from "react"
 import Input from "../components/Input"
 import { useNavigate } from "react-router-dom"
+import { useAuth } from "../context/auth"
 
 
 const Login = () => {
   const navigate = useNavigate()
+  const { storetoken }= useAuth()
   const [user,setUser] = useState({
     email: '',
     password: ''
@@ -23,7 +25,9 @@ const handleSubmit = async(e) =>{
             },
             body: JSON.stringify(user)
       })  
-      if(response.ok){   
+      if(response.ok){ 
+        const resData = await response.json()
+        storetoken(resData.token)   
         setUser({ email: '', password: '' })
         alert('login successfull')
         navigate('/')

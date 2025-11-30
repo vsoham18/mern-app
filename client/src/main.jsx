@@ -9,6 +9,8 @@ import Contact from './pages/Contact.jsx'
 import Login from './pages/Login.jsx'
 import Register from './pages/Register.jsx'
 import Service from './pages/Service.jsx'
+import Error from './pages/Error.jsx'
+import Logout from './pages/Logout.jsx'
 
 const router = createBrowserRouter([
   {
@@ -19,8 +21,10 @@ const router = createBrowserRouter([
       { path: '/about', element: <About /> },
       { path: '/contact', element: <Contact/>},
       { path: '/login', element: <Login/>},
-      { path: '/SignUp', element: <Register/>},
-      { path: '/service', element: <Service/>}
+      { path: '/signup', element: <Register/>},
+      { path: '/service', element: <Service/>},
+      { path: '/logout', element: <Logout/> },
+      { path: '*', element: <Error/> }
     ]
   }
 ])

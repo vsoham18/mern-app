@@ -1,7 +1,8 @@
-import { Link } from "react-router"
+import { Link } from "react-router-dom"
 import Navlink from "./Navlink"
-
+import { useAuth } from "../context/auth"
 const Header = () => {
+  const {isloggedin} = useAuth()
   return (
     <>
      <nav className="header">
@@ -9,13 +10,18 @@ const Header = () => {
           <Link to="/" >MyApp</Link>
       </div>
       <div className="services">
-            <Navlink page="/"/>
-            <Navlink page="About"/>
-            <Navlink page="Contact"/>
-            <Navlink page="Service"/>
-            <Navlink page="Login"/>
-            <Navlink page="SignUp"/>
-           
+            <Navlink page="/"/> 
+            <Navlink page="about"/>
+            <Navlink page="contact"/>
+            <Navlink page="service"/>
+            {
+            isloggedin ? <Navlink page="logout"/> :
+             <>
+            <Navlink page="login"/>
+            <Navlink page="signUp"/>
+            </> 
+            }
+            
       </div>
      </nav>
 
