@@ -32,11 +32,12 @@ const Register = () => {
         const resData = await response.json()
          storetoken(resData.token) 
         setForm({ userName: '', email: '', phone: '', password: '' })
-        alert('Registration successful! Please login.')
+        alert(resData.msg)
         navigate('/login')
       }else{
         const resData = await response.json()
-        alert(resData.extraDetails)
+        console.log(resData)
+        alert(resData.extraDetails ? resData.extraDetails : resData.message)
       }
       }catch(err){
         console.error('Error during registration:', err)
@@ -48,28 +49,28 @@ const Register = () => {
 
           <Input
             label={"Username"}
-            id={"username"}
+            id={"Username"}
             name="userName"
             value={form.userName}
             onChange={handleChange}
           />
           <Input
             label={"Email"}
-            id={"email"}
+            id={"Email"}
             name="email"
             value={form.email}
             onChange={handleChange}
           />
           <Input
             label={"Phone"}
-            id={"phone"}
+            id={"Phone"}
             name="phone"
             value={form.phone}
             onChange={handleChange}
           />
           <Input
             label={"Password"}
-            id={"password"}
+            id={"Password"}
             name="password"
             value={form.password}
             type={"password"}

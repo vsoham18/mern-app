@@ -1,10 +1,15 @@
-import {  createContext, useContext, useState } from "react";
+import {  createContext, useContext, useEffect, useState } from "react";
+import { useNavigate } from "react-router";
 
 export const AuthContext = createContext();
   
 export const AuthProvider = ({children}) =>{
    const [token, setToken] = useState(localStorage.getItem('token'))
+   const [user, setUser] = useState("")
 
+   const navigate = useNavigate()
+     
+   //  JWT token store in local storage
     const storetoken = (serverToken) =>{
        return localStorage.setItem('token', serverToken)
     }
@@ -15,8 +20,33 @@ export const AuthProvider = ({children}) =>{
          setToken("")
       return localStorage.removeItem('token')
     }
+    
+    // #fetch user details
+    const getuserDetails = async()=>{
+        try{
+            const response = await fetch('http://localhost:5000/contact',{
+                method: 'GET',
+                headers: {
+                  'Content-Type': 'application/json',
+                  'authorization': `Bearer ${token}`
+                }
+            })
+            if(response.ok){
+              const data = await response.json()
+                setUser(data)
+            }
+        }catch(err){
+          console.error('Error during fetching user details:', err)
+        }
+    }
+
+    //   #jwt authenticate
+       useEffect(()=>{
+          getuserDetails()
+       },[token])
+   
     return(
-        <AuthContext.Provider value={{storetoken, isloggedin, logoutUser}}>
+        <AuthContext.Provider value={{storetoken, isloggedin, logoutUser,user}}>
             {children}
         </AuthContext.Provider>
     )

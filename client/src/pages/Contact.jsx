@@ -1,13 +1,27 @@
 import { useState } from "react"
 import Input from "../components/Input"
-
+import { useAuth } from "../context/auth"
+   
 const Contact = () => {
+  
+   const { user } = useAuth()
+
   const [form, setform] = useState({
     username: '',
     email: '',
     message: ''
   })
 
+  const [isuser,setisuser] = useState(true)
+
+    if(isuser && user){
+      setform({
+    username: user.username,
+    email: user.email,
+    })
+    setisuser(false)
+  }
+  
   const handleChange = (e)=>{
        const { name, value } = e.target
        setform(prev => ({ ...prev, [name]: value }))
@@ -23,7 +37,7 @@ const Contact = () => {
             },
             body: JSON.stringify(form)
         })
-    
+      
         if(response.ok){
           alert('Message sent successfully')
           setform({

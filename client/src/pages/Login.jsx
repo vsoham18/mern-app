@@ -30,11 +30,12 @@ const handleSubmit = async(e) =>{
         const resData = await response.json()
         storetoken(resData.token)   
         setUser({ email: '', password: '' })
-        alert('login successfull')
+        alert(resData.msg)
         navigate('/')
       }else{
         const resData =  await response.json()
-        alert(resData.message)
+        console.log(resData);
+        alert( resData.extraDetails ? resData.extraDetails : resData.message)
       }
       }catch(err){
         console.error('Error during login:', err)
@@ -46,7 +47,7 @@ const handleSubmit = async(e) =>{
        <form className="login-form" onSubmit={handleSubmit}>
          <Input
             label={"Email"}
-            id={"email"}
+            id={"Email"}
             name="email"
             value={user.email}
             type={"email"}
@@ -54,7 +55,7 @@ const handleSubmit = async(e) =>{
           />
          <Input
             label={"Password"}
-            id={"password"}
+            id={"Password"}
             name="password"
             value={user.password}
             type={"password"}

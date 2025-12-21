@@ -9,7 +9,7 @@ import { useEffect } from "react";
     },[logoutUser])
     console.log("logout")
     return(
-        <Navigate to="/login" />
+        <Navigate to="/" />
     )
 }
 export default Logout;

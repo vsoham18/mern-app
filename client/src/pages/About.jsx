@@ -1,6 +1,10 @@
+import { useAuth } from "../context/auth"
 const About = () => {
+  const { user } = useAuth()
   return (
-    <div>About</div>
+    <div>
+       <h2>hello {user.username}</h2>
+    </div>
   )
 }
 
