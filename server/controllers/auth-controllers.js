@@ -9,7 +9,7 @@
 
 import { User } from "../models/user-model.js";
 
- const Register = async (req,res)=>{
+ const Register = async (req,res)=>{ 
     try{
        const {userName,email,password,phone} = req.body;
 
@@ -23,14 +23,15 @@ import { User } from "../models/user-model.js";
        .json({
         msg:"registration sucessfull",
         token:await userCreated.generateToken(),
+        name:userCreated.userName,
+        email:userCreated.email,
         userId:userCreated._id.toString()
       });   
     } catch(error){
-      console.error(error)
       return res.status(500).json({message:"Internal server error"})
     } 
 }
-const Login = async (req,res)=>{
+const Login = async (req,res)=>{ 
   try{
   const {email,password} = req.body
   const userExist = await User.findOne({email})

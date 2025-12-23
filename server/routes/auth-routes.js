@@ -5,7 +5,6 @@ import { loginSchema, signupSchema } from "../validators/auth-validator.js";
 const router = Router();
    
 router.get("/",authController.Home)
-router.route("/register").post(validate(signupSchema),authController.Register)
-router.post("/login",validate(loginSchema),authController.Login)
-
+router.route("/api/auth/register").post(validate(signupSchema),authController.Register)
+router.post("/api/auth/login",validate(loginSchema),authController.Login)
 export const authRouter= router;

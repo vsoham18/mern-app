@@ -1,5 +1,7 @@
 import { Router } from "express"
-import { ContactController } from "../controllers/contact-controller.js";
+import { ContactController, GetContactsController } from "../controllers/contact-controller.js";
+import { authorize } from "../middlewares/auth-middleware.js";
 const router = Router();
+router.get("/contact",authorize,GetContactsController)
 router.post("/contact", ContactController)
-export const contactRouter = router; 
+export const contactRouter = router;     
