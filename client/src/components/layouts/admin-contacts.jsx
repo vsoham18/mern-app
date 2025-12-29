@@ -11,7 +11,7 @@ export const AdminContacts = () => {
 
     const fetchContacts = async() => {
       try{
-        const response = await fetch('http://localhost:5000/api/admin/contacts',{
+        const response = await fetch(`${url}/api/admin/contacts`,{
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
