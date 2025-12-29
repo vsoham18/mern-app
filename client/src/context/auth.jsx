@@ -4,6 +4,7 @@ import { useNavigate } from "react-router";
 export const AuthContext = createContext();
   
 export const AuthProvider = ({children}) =>{
+   const url = 'https://mern-app-backened.onrender.com'
    const [token, setToken] = useState(localStorage.getItem('token'))
    const [user, setUser] = useState("")
    const navigate = useNavigate() 
@@ -18,6 +19,7 @@ export const AuthProvider = ({children}) =>{
 
     const logoutUser =()=>{
          setToken("")
+         setUser("")
       return localStorage.removeItem('token')
     }
 
@@ -42,11 +44,12 @@ export const AuthProvider = ({children}) =>{
 
     //   #jwt authenticate
        useEffect(()=>{
+        console.log('hii');
           getuserDetails()
        },[token])
    
     return(
-        <AuthContext.Provider value={{token,storetoken, isloggedin, logoutUser,user}}>
+        <AuthContext.Provider value={{token,storetoken, isloggedin, logoutUser,user,url}}>
             {children}
         </AuthContext.Provider>
     )

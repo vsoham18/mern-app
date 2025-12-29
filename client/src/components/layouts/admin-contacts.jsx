@@ -3,7 +3,7 @@ import { useAuth } from "../../context/auth"
 
 export const AdminContacts = () => {
     const [data, setData] = useState([])
-    const {token} = useAuth()
+    const {token, url} = useAuth()
 
      useEffect(()=>{
       fetchContacts()
@@ -27,7 +27,7 @@ export const AdminContacts = () => {
 
     const deleteContact = async(id) => {
       try{
-        const response = await fetch(`http://localhost:5000/api/admin/contacts/${id}`,{
+        const response = await fetch(`${url}/api/admin/contacts/${id}`,{
           method: 'DELETE',
           headers: {
             'Content-Type': 'application/json',

@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router'
 const Service = () => {
 
   const navigate = useNavigate()
-  const {isloggedin} = useAuth()
+  const {isloggedin, url} = useAuth()
   const [data, setdata] = useState([])
   
      useEffect(()=>{
@@ -15,7 +15,7 @@ const Service = () => {
         navigate('/login')
         return
       }
-      const response = await fetch('http://localhost:5000/service',{
+      const response = await fetch(`${url}/service`,{
         method: 'GET',
         headers: {
           'Content-Type': 'application/json'

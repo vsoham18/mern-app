@@ -4,12 +4,12 @@ import { Link } from "react-router"
 
 export const AdminUsers = () => {
   const [users, setUsers] = useState([])
-  const {token} = useAuth()
+  const {token, url} = useAuth()
 
   // #fetch all users
   const getAllUsers = async()=>{
     try{
-       const response = await fetch('http://localhost:5000/api/admin/users',{
+       const response = await fetch(`${url}/api/admin/users`,{
         method: 'GET',
         headers:{
           'Content-Type': 'application/json',
@@ -31,7 +31,7 @@ export const AdminUsers = () => {
   // #delete user
   const deleteUser = async(userId) => {
     try{
-      const response = await fetch(`http://localhost:5000/api/admin/users/delete/${userId}`,{
+      const response = await fetch(`${url}/api/admin/users/delete/${userId}`,{
         method: 'DELETE',
         headers:{
           'Content-Type': 'application/json',

@@ -5,7 +5,7 @@ import { useAuth } from "../../context/auth"
 import { toast } from "react-toastify"
 export const EditAdminUsers = () => {
 
-    const {token} = useAuth()
+    const {token, url} = useAuth()
     const { Id } = useParams()
     const navigate = useNavigate()
 
@@ -22,7 +22,7 @@ export const EditAdminUsers = () => {
 //  <--- to fetch the data by user id and populate the form --->
   const fetchUserDetails = async()=>{
     try{
-      const response = await fetch(`http://localhost:5000/api/admin/users/${Id}`,{
+      const response = await fetch(`${url}/api/admin/users/${Id}`,{
         method: 'GET',
         headers:{
           'Content-Type': 'application/json',
