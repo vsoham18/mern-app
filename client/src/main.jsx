@@ -11,6 +11,11 @@ import Register from './pages/Register.jsx'
 import Service from './pages/Service.jsx'
 import Error from './pages/Error.jsx'
 import Logout from './pages/Logout.jsx'
+import { AdminLayout } from './components/layouts/admin-layout.jsx'
+import { AdminUsers } from './components/layouts/Admin-users.jsx'
+import { AdminContacts } from './components/layouts/admin-contacts.jsx'
+import { AdminServices } from './components/layouts/admin-services.jsx'
+import { EditAdminUsers } from './components/layouts/editAdminUsers.jsx'
 
 const router = createBrowserRouter([
   {
@@ -24,6 +29,15 @@ const router = createBrowserRouter([
       { path: '/signup', element: <Register/>},
       { path: '/service', element: <Service/>},
       { path: '/logout', element: <Logout/> },
+      { path: '/admin', element: <AdminLayout/>,
+        children:[
+          { path: 'users', element: <AdminUsers/> },
+          { path: 'users/edit/:Id', element: <EditAdminUsers/> },
+          { path: 'contacts', element: <AdminContacts/>},
+          { path: 'services', element: <AdminServices/>},
+        ]
+      },
+
       { path: '*', element: <Error/> }
     ]
   }

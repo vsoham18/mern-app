@@ -6,11 +6,11 @@ export const AuthContext = createContext();
 export const AuthProvider = ({children}) =>{
    const [token, setToken] = useState(localStorage.getItem('token'))
    const [user, setUser] = useState("")
-
-   const navigate = useNavigate()
+   const navigate = useNavigate() 
      
    //  JWT token store in local storage
     const storetoken = (serverToken) =>{
+        setToken(serverToken)
        return localStorage.setItem('token', serverToken)
     }
 
@@ -20,7 +20,7 @@ export const AuthProvider = ({children}) =>{
          setToken("")
       return localStorage.removeItem('token')
     }
-    
+
     // #fetch user details
     const getuserDetails = async()=>{
         try{
@@ -46,7 +46,7 @@ export const AuthProvider = ({children}) =>{
        },[token])
    
     return(
-        <AuthContext.Provider value={{storetoken, isloggedin, logoutUser,user}}>
+        <AuthContext.Provider value={{token,storetoken, isloggedin, logoutUser,user}}>
             {children}
         </AuthContext.Provider>
     )

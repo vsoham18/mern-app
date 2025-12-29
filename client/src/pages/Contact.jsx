@@ -5,7 +5,7 @@ import { useAuth } from "../context/auth"
 const Contact = () => {
   
    const { user } = useAuth()
-
+ 
   const [form, setform] = useState({
     username: '',
     email: '',
@@ -16,7 +16,7 @@ const Contact = () => {
 
     if(isuser && user){
       setform({
-    username: user.username,
+    username: user.userName,
     email: user.email,
     })
     setisuser(false)
@@ -40,11 +40,7 @@ const Contact = () => {
       
         if(response.ok){
           alert('Message sent successfully')
-          setform({
-            username: '',
-            email: '',
-            message: ''
-          })
+          setform((prev)=>({...prev, message: ''}))
         }else{
           alert('Failed to send message. Please try again.')
         }

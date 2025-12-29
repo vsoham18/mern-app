@@ -2,6 +2,7 @@ import { useState } from "react"
 import Input from "../components/Input"
 import { useNavigate } from "react-router-dom"
 import { useAuth } from "../context/auth"
+import { toast } from 'react-toastify';
 
 
 const Login = () => {
@@ -11,7 +12,7 @@ const Login = () => {
     email: '',
     password: ''
   })
-  const handleChange = (e)=>{
+  const handleChange = (e)=>{ 
        const { name, value } = e.target
        setUser(prev => ({ ...prev, [name]: value }))
   }
@@ -30,13 +31,13 @@ const handleSubmit = async(e) =>{
         const resData = await response.json()
         storetoken(resData.token)   
         setUser({ email: '', password: '' })
-        alert(resData.msg)
+        toast.success(resData.msg)
         navigate('/')
       }else{
         const resData =  await response.json()
         console.log(resData);
-        alert( resData.extraDetails ? resData.extraDetails : resData.message)
-      }
+        toast.error( resData.extraDetails ? resData.extraDetails : resData.message)
+        }
       }catch(err){
         console.error('Error during login:', err)
       }

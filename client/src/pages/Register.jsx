@@ -2,6 +2,8 @@ import { useState } from "react"
 import { useNavigate } from "react-router-dom"
 import Input from "../components/Input.jsx"
 import { useAuth } from "../context/auth.jsx"
+import { toast } from 'react-toastify';
+
 
 const Register = () => {
   const [form, setForm] = useState({
@@ -29,15 +31,13 @@ const Register = () => {
             body: JSON.stringify(form)
       })  
       if(response.ok){ 
-        const resData = await response.json()
-         storetoken(resData.token) 
+        const resData = await response.json() 
         setForm({ userName: '', email: '', phone: '', password: '' })
-        alert(resData.msg)
+        toast.success(resData.msg)
         navigate('/login')
       }else{
         const resData = await response.json()
-        console.log(resData)
-        alert(resData.extraDetails ? resData.extraDetails : resData.message)
+        toast.error(resData.extraDetails ? resData.extraDetails : resData.message)
       }
       }catch(err){
         console.error('Error during registration:', err)
