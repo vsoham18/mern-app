@@ -26,7 +26,7 @@ export const AuthProvider = ({children}) =>{
     // #fetch user details
     const getuserDetails = async()=>{
         try{
-            const response = await fetch('http://localhost:5000/contact',{
+            const response = await fetch(`${url}/contact`,{
                 method: 'GET',
                 headers: {
                   'Content-Type': 'application/json',
