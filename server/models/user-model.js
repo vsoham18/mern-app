@@ -43,7 +43,7 @@ userSchema.pre("save", async function(next) {
             id: this._id.toString(),
             email: this.email,
             isadmin: this.isadmin
-         }, process.env.JWT_SECRET,
+         }, process.env.JWT_SECRET, 
          {
             expiresIn:"30d"
         })

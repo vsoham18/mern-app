@@ -10,15 +10,12 @@ export const ContactController = async (req,res,next)=>{
 
     } catch(error){
        next(error)
-    }
+    } 
 } 
 
 export const GetContactsController = async (req,res,next)=>{
     try{
-       const contacts={
-        username:req.user.userName, 
-        email:req.user.email
-       }
+       const contacts= req.user
        return res.status(200).json(contacts)
     }catch(error){
         next(error)

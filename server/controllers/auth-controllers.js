@@ -22,11 +22,10 @@ import { User } from "../models/user-model.js";
        return res.status(201)
        .json({
         msg:"registration sucessfull",
-        token:await userCreated.generateToken(),
         name:userCreated.userName,
         email:userCreated.email,
         userId:userCreated._id.toString()
-      });   
+      })  
     } catch(error){
       return res.status(500).json({message:"Internal server error"})
     } 
