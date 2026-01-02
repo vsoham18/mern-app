@@ -1,13 +1,17 @@
 import {  createContext, useContext, useEffect, useState } from "react";
-import { useNavigate } from "react-router";
 
 export const AuthContext = createContext();
   
 export const AuthProvider = ({children}) =>{
-   const url = 'https://mern-app-backened.onrender.com'
+   const url = 'http://localhost:5000'
    const [token, setToken] = useState(localStorage.getItem('token'))
    const [user, setUser] = useState("")
-   const navigate = useNavigate() 
+     
+ const [authModal, setAuthModal] = useState(null);
+
+  const openLogin = () => setAuthModal("login");
+  const openRegister = () => setAuthModal("register");
+  const closeAuthModal = () => setAuthModal(null);
      
    //  JWT token store in local storage
     const storetoken = (serverToken) =>{
@@ -44,12 +48,11 @@ export const AuthProvider = ({children}) =>{
 
     //   #jwt authenticate
        useEffect(()=>{
-        console.log('hii');
           getuserDetails()
        },[token])
    
     return(
-        <AuthContext.Provider value={{token,storetoken, isloggedin, logoutUser,user,url}}>
+        <AuthContext.Provider value={{token,storetoken, isloggedin, logoutUser,user,url, openLogin, openRegister, closeAuthModal, authModal}}>
             {children}
         </AuthContext.Provider>
     )

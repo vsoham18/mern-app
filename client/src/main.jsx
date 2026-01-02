@@ -1,48 +1,24 @@
-import { createRoot } from 'react-dom/client'
-import { createBrowserRouter, RouterProvider } from 'react-router-dom' 
+import { createRoot } from "react-dom/client";
+import { RouterProvider } from "react-router-dom";
+import { AuthProvider } from "./context/auth.jsx";
+import { ToastContainer, Bounce } from "react-toastify";
+import router from "./router.jsx";
+import "react-toastify/dist/ReactToastify.css";
+import "./index.css";
 
-import './index.css'
-import App from './App.jsx'
-import Home from './pages/Home.jsx'
-import About from './pages/About.jsx'
-import Contact from './pages/Contact.jsx'
-import Login from './pages/Login.jsx'
-import Register from './pages/Register.jsx'
-import Service from './pages/Service.jsx'
-import Error from './pages/Error.jsx'
-import Logout from './pages/Logout.jsx'
-import { AdminLayout } from './components/layouts/admin-layout.jsx'
-import { AdminUsers } from './components/layouts/Admin-users.jsx'
-import { AdminContacts } from './components/layouts/admin-contacts.jsx'
-import { AdminServices } from './components/layouts/admin-services.jsx'
-import { EditAdminUsers } from './components/layouts/editAdminUsers.jsx'
-
-const router = createBrowserRouter([
-  {
-      path: '/',
-      element: <App />,
-      children: [
-      { path: '/', element: <Home /> },
-      { path: '/about', element: <About /> },
-      { path: '/contact', element: <Contact/>},
-      { path: '/login', element: <Login/>},
-      { path: '/signup', element: <Register/>},
-      { path: '/service', element: <Service/>},
-      { path: '/logout', element: <Logout/> },
-      { path: '/admin', element: <AdminLayout/>,
-        children:[
-          { path: 'users', element: <AdminUsers/> },
-          { path: 'users/edit/:Id', element: <EditAdminUsers/> },
-          { path: 'contacts', element: <AdminContacts/>},
-          { path: 'services', element: <AdminServices/>},
-        ]
-      },
-
-      { path: '*', element: <Error/> }
-    ]
-  }
-])
-
-const root=createRoot(document.querySelector('#root'))
-root.render(<RouterProvider router={router} />)
-
+createRoot(document.getElementById("root")).render(
+  <AuthProvider>
+    <RouterProvider router={router} />
+    <ToastContainer
+      position="top-right"
+      autoClose={3000}
+      hideProgressBar={false}
+      closeOnClick={false}
+      pauseOnHover
+      draggable
+      theme="light"
+      transition={Bounce}
+      className="toast-body"
+    />
+  </AuthProvider>
+);

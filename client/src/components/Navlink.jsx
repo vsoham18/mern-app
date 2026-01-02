@@ -1,13 +1,34 @@
 import { NavLink } from "react-router-dom";
 
-const Navlink = ({page}) => {
-  return (
-      <NavLink 
-        to={`${page === "/" ? "/" : `/${page}`}`}
-        className={({ isActive }) => (isActive ? "active" : "")}>
-       {page === "/" ? "Home" : page.charAt(0).toUpperCase() + page.slice(1)}
-      </NavLink>
+export const NavItem = ({ to, label }) => (
+  <NavLink
+    to={to}
+    className={({ isActive }) =>
+      `font-medium transition ${
+        isActive
+          ? "text-indigo-600"
+          : "text-gray-700 hover:text-indigo-600"
+      }`
+    }
+  >
+    {label}
+  </NavLink>
+);
 
-  );
-}
-export default Navlink
+export const MobileNavItem = ({ to, label, setMenuOpen }) => (
+  <NavLink
+    to={to}
+    onClick={() => setMenuOpen(false)}
+    className={({ isActive }) =>
+      `block font-medium ${
+        isActive
+          ? "text-indigo-600"
+          : "text-gray-700 hover:text-indigo-600"
+      }`
+    }
+  >
+    {label}
+  </NavLink>
+);
+
+

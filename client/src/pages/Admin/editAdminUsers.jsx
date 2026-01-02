@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react"
-import Input from "../Input"
+
 import { useNavigate, useParams } from "react-router-dom"
 import { useAuth } from "../../context/auth"
 import { toast } from "react-toastify"
+import Input from "../../components/Input"
 export const EditAdminUsers = () => {
 
     const {token, url} = useAuth()
@@ -73,31 +74,75 @@ export const EditAdminUsers = () => {
     }
   return (
     <>
-    <div>Edit Users</div>
-      <form className="edit-user-form" onSubmit={handleSubmit}>
-           <Input
-            label={"Username"}
-            id={"Username"}
-            name="userName"
-            value={form.userName}
-            onChange={handleChange}
-          />
-          <Input
-            label={"Email"}
-            id={"Email"}
-            name="email"
-            value={form.email}
-            onChange={handleChange}
-          />
-          <Input
-            label={"Phone"}
-            id={"Phone"}
-            name="phone"
-            value={form.phone}
-            onChange={handleChange}
-          />
-            <button type="submit">Update</button>
-      </form>
+    <div className="max-w-3xl mx-auto bg-white rounded-xl shadow-md p-6 sm:p-8">
+
+  {/* Heading */}
+  <h2 className="text-2xl font-bold text-gray-800 mb-6 text-center">
+    Edit User
+  </h2>
+
+  {/* Form */}
+  <form className="space-y-5" onSubmit={handleSubmit}>
+
+    <div>
+      <label className="block text-sm font-medium text-gray-700 mb-2">
+        Username
+      </label>
+      <Input
+        name="userName"
+        value={form.userName}
+        onChange={handleChange}
+      />
+    </div>
+
+    <div>
+      <label className="block text-sm font-medium text-gray-700 mb-2">
+        Email
+      </label>
+      <Input
+        name="email"
+        type="email"
+        value={form.email} 
+        onChange={handleChange}
+      />
+    </div>
+
+    <div>
+      <label className="block text-sm font-medium text-gray-700 mb-2">
+        Phone
+      </label>
+      <Input
+        name="phone"
+        value={form.phone}
+        onChange={handleChange}
+      />
+    </div>
+
+    {/* Action Buttons */}
+    <div className="flex flex-col sm:flex-row gap-4 pt-4">
+      <button
+        type="submit"
+        className="w-full sm:w-auto px-6 py-2.5 rounded-lg 
+        bg-indigo-600 text-white font-semibold 
+        hover:bg-indigo-700 transition shadow-md"
+      >
+        Update User
+      </button>
+
+      <button
+        type="button"
+        onClick={() => window.history.back()}
+        className="w-full sm:w-auto px-6 py-2.5 rounded-lg 
+        border border-gray-300 text-gray-700 
+        hover:bg-gray-100 transition"
+      >
+        Cancel
+      </button>
+    </div>
+
+  </form>
+</div>
+
     </>
   )
 }
