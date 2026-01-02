@@ -1,6 +1,6 @@
 import { Outlet } from "react-router-dom";
 import Header from "./components/Header.jsx";
-import Footer from "./components/Footer.jsx";
+import Footer from "./components/footer.jsx";
 import AuthModel from "./components/AuthModel.jsx";
 
 const App = () => {
@@ -10,7 +10,7 @@ const App = () => {
       <main>
         <Outlet />
       </main>
-      <Footer />
+      <Footer/>
 
       <AuthModel/>
     </>
