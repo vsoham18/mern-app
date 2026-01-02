@@ -5,11 +5,10 @@ import Home from "./pages/Home.jsx";
 import About from "./pages/About.jsx";
 import Contact from "./pages/Contact.jsx";
 import Service from "./pages/Service.jsx";
-import Login from "./pages/Login.jsx";
-import Register from "./pages/Register.jsx";
+
 import Logout from "./pages/Logout.jsx";
 import Error from "./pages/Error.jsx";
-import AuthLayout from "./authlayout.jsx"; 
+ 
 
 import { AdminLayout } from "./pages/Admin/admin-layout.jsx";
 import { AdminUsers } from "./pages/Admin/Admin-users.jsx";
@@ -28,15 +27,6 @@ const router = createBrowserRouter([
       { path: "contact", element: <Contact /> },
       { path: "service", element: <Service /> },
       { path: "logout", element: <Logout /> },
-    ],
-  },
-
-    // Auth pages (NO Header/Footer)
-  {
-    element: <AuthLayout/>,
-    children: [
-      // { path: "/login", element: <Login /> },
-      { path: "/signup", element: <Register /> },
     ],
   },
 
