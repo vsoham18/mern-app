@@ -43,7 +43,7 @@ const Register = () => {
   }
   return (
     
-<div className="relative w-full max-w-lg bg-white rounded-2xl shadow-xl p-8">
+     <div className="relative w-full max-w-lg bg-white rounded-2xl shadow-xl p-8">
         
          <button
          onClick={ closeAuthModal }
@@ -128,7 +128,7 @@ const Register = () => {
       </button>
     </p>
 
-  </div>
+     </div>
 
 
   )

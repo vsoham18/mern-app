@@ -70,11 +70,11 @@ const About = () => {
             </div>
           </div>
 
-          {/* User Greeting (Optional) */}
+          {/* User Greeting  */}
           {user && (
             <p className="text-center text-gray-500 pt-6">
               Glad to have you with us, <span className="font-medium text-gray-800">
-              {user.username}
+              {user.userName}
               </span> 👋
             </p>
           )}

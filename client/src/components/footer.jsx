@@ -1,10 +1,12 @@
 import { Link } from "react-router-dom";
+import { useAuth } from "../context/auth";
 
 const Footer = () => {
+  const { openLogin, openRegister } = useAuth();
   return (
     <footer className="bg-gray-900 text-gray-300">
       
-      {/* Main Footer (compact) */}
+      {/* Main Footer */}
       <div className="max-w-7xl mx-auto px-6 py-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
 
         {/* Brand */}
@@ -36,8 +38,8 @@ const Footer = () => {
             Support
           </h3>
           <ul className="space-y-1 text-sm">
-            <li><Link to="/login" className="hover:text-indigo-400">Login</Link></li>
-            <li><Link to="/signup" className="hover:text-indigo-400">Register</Link></li>
+            <li><button onClick={() =>  openLogin()} className="hover:text-indigo-400">Login</button></li>
+            <li><button onClick={() =>  openRegister()} className="hover:text-indigo-400">Register</button></li>
             <li><a href="#" className="hover:text-indigo-400">Privacy Policy</a></li>
           </ul>
         </div>

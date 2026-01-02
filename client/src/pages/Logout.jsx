@@ -7,7 +7,6 @@ import { useEffect } from "react";
     useEffect(()=>{
         logoutUser()
     },[logoutUser])
-    console.log("logout")
     return(
         <Navigate to="/" />
     )

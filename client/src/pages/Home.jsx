@@ -2,7 +2,7 @@ import { useAuth } from "../context/auth";
 import { Link } from "react-router-dom";
 
 const Home = () => {
-  const { user, isloggedin } = useAuth();
+  const { user, isloggedin, openLogin } = useAuth();
 
   return (
     <div className="min-h-[80vh] flex items-center justify-center px-4">
@@ -49,13 +49,13 @@ const Home = () => {
             </>
           ) : (
             <>
-              <Link
-                to="/login"
+              <button
+               onClick={openLogin}
                 className="px-8 py-3 rounded-lg bg-indigo-600 text-white font-semibold 
                 hover:bg-indigo-700 transition shadow-md"
               >
                 Get Started
-              </Link>
+              </button>
 
               <Link
                 to="/about"

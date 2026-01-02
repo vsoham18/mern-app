@@ -3,7 +3,7 @@ import {  createContext, useContext, useEffect, useState } from "react";
 export const AuthContext = createContext();
   
 export const AuthProvider = ({children}) =>{
-   const url = 'http://localhost:5000'
+   const url = 'https://mern-app-backened.onrender.com'
    const [token, setToken] = useState(localStorage.getItem('token'))
    const [user, setUser] = useState("")
      

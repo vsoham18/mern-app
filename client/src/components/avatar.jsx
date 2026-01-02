@@ -41,7 +41,7 @@ const UserAvatar = ({ userName }) => {
       {/* Dropdown */}
       {open && (
         <div className="absolute right-0 mt-2 w-40 bg-white 
-        border rounded-lg shadow-lg z-50">
+        border rounded-lg shadow-lg z-50 overflow-hidden ">
 
           <div className="px-4 py-2 text-sm text-gray-600 border-b">
             {userName}

@@ -11,9 +11,8 @@ const AuthModel = () => {
     <>
       {/* Overlay */}
       <div
-        className="fixed inset-0 bg-black/50 backdrop-blur-sm z-40"
-        onClick={closeAuthModal}
-      />
+        className="fixed inset-0 bg-black/20 backdrop-blur-sm z-40"
+        /> 
 
       {/* Modal */}
       <div className="fixed inset-0 z-50 flex items-center justify-center px-4">
