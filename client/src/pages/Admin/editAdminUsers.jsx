@@ -48,10 +48,9 @@ export const EditAdminUsers = () => {
     
     // <--- to submit the edited user details --->
     const handleSubmit = async(e) =>{
-          console.log(form);
         try{
         e.preventDefault()
-       const response = await fetch(`http://localhost:5000/api/admin/users/edit/${Id}`,{
+       const response = await fetch(`${url}/api/admin/users/edit/${Id}`,{
         method: 'PATCH',
         headers:{
           'Content-Type': 'application/json',
